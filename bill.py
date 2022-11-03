@@ -31,6 +31,12 @@ while(True):
         print("total=",total)
     elif(ch==3):
         print("Added Burger")
+        print("burger added")
+        qty=int(input("enter the quantity"))
+        total=45*qty
+        l.append("burger x"+str(qty))
+        print("quantity=",qty)
+        print("total=",total)
     elif(ch==4):
         print("Added Sandwich")
     elif(ch==5):
