@@ -46,6 +46,11 @@ while(True):
         print("total=",total)
     elif(ch==5):
         print("Added Alpham")
+        qty=int(input("enter the quantity"))
+        total=100*qty
+        l.append("alpham x"+str(qty))
+        print("quantity=",qty)
+        print("total=",total)
     elif(ch==6):
         print("Generating bill")
     elif(ch==7):
