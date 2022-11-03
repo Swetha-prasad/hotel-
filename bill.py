@@ -53,5 +53,21 @@ while(True):
         print("total=",total)
     elif(ch==6):
         print("Generating bill")
+         
+        name = input('Enter the name : ')
+        phoneno = input('Enter the phone number : ')
+        #dates = input('Enter the date in the form of yyyy-mm-d : ')
+        l1 = []
+        l1.extend(l)
+        count = 0
+        for i in l1:
+            l.remove(i)
+            amount = count
+         #print(f'Total amount {count} ')
+        sql = sql="INSERT INTO `billing`( `name`, `phnno`, `amount`, `date`) VALUES (%s,%s,%s,now())"
+        data = (name,phoneno,amount)
+        mycursor.execute(sql,data)
+        mydb.commit()
+        print('data inserted ')
     elif(ch==7):
         break
