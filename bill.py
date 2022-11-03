@@ -1,5 +1,11 @@
 import mysql.connector
-mydb=mysql.connector.connect(host='localhost',user='root',password='',database='hoteldb')
+import sys
+from datetime import datetime
+try:
+    mydb=mysql.connector.connect(host='localhost',user='root',password='',database='hoteldb')
+except mysql.connector.Error as e:
+    #print("connection error")
+    sys.exit("dbconnection failure")   
 mycursor = mydb.cursor()
 total=0
 item=[]
@@ -64,10 +70,13 @@ while(True):
             l.remove(i)
             amount = count
          #print(f'Total amount {count} ')
-        sql = sql="INSERT INTO `billing`( `name`, `phnno`, `amount`, `date`) VALUES (%s,%s,%s,now())"
-        data = (name,phoneno,amount)
-        mycursor.execute(sql,data)
-        mydb.commit()
+         try:
+             sql = sql="INSERT INTO `billing`( `name`, `phnno`, `amount`, `date`) VALUES (%s,%s,%s,now())"
+             data = (name,phoneno,amount)
+             mycursor.execute(sql,data)
+             mydb.commit()
+        except mysql.connector.Error as e:
+            sys.exit("insert error")
         print('data inserted ')
     elif(ch==7):
         break
